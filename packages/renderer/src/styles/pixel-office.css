@@ -1,0 +1,295 @@
+/**
+ * Pixel Office Styles
+ */
+
+.pixel-office {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  background-color: #1a1a1a;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.pixel-office-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #1a1a1a;
+  color: #fff;
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(255, 255, 255, 0.1);
+  border-top-color: #4f46e5;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Sidebars */
+.pixel-office-sidebar {
+  background-color: #2a2a2a;
+  border-left: 1px solid #3a3a3a;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.pixel-office-sidebar-left {
+  border-right: 1px solid #3a3a3a;
+  border-left: none;
+}
+
+/* Main office area */
+.pixel-office-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* Office Canvas */
+.office-canvas-container {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+.office-canvas {
+  width: 100%;
+  height: 100%;
+}
+
+.office-canvas-controls {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  gap: 8px;
+}
+
+.control-btn {
+  padding: 8px 12px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.control-btn:hover {
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+/* Chat Panel */
+.chat-panel {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.chat-header {
+  padding: 16px;
+  border-bottom: 1px solid #3a3a3a;
+  background-color: #333;
+}
+
+.chat-header h3 {
+  margin: 0;
+  color: #fff;
+  font-size: 16px;
+}
+
+.chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+}
+
+.chat-message {
+  margin-bottom: 12px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background-color: #333;
+}
+
+.chat-message-user {
+  background-color: #4f46e5;
+  margin-left: 20%;
+}
+
+.chat-message-assistant {
+  background-color: #333;
+  margin-right: 20%;
+}
+
+.chat-message strong {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 12px;
+  color: #aaa;
+}
+
+.chat-message p {
+  margin: 0;
+  color: #fff;
+}
+
+.chat-empty {
+  text-align: center;
+  color: #888;
+  margin-top: 40px;
+}
+
+.chat-input {
+  padding: 16px;
+  border-top: 1px solid #3a3a3a;
+  display: flex;
+  gap: 8px;
+}
+
+.chat-input input {
+  flex: 1;
+  padding: 8px 12px;
+  background-color: #333;
+  border: 1px solid #444;
+  border-radius: 4px;
+  color: #fff;
+}
+
+.chat-input button {
+  padding: 8px 16px;
+  background-color: #4f46e5;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* File Tree */
+.file-tree-panel {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.file-tree-header {
+  padding: 16px;
+  border-bottom: 1px solid #3a3a3a;
+  background-color: #333;
+}
+
+.file-tree-header h3 {
+  margin: 0;
+  color: #fff;
+  font-size: 16px;
+}
+
+.file-tree {
+  flex: 1;
+  overflow-y: auto;
+  padding: 8px;
+}
+
+.file-tree-item {
+  padding: 6px 12px;
+  cursor: pointer;
+  color: #ccc;
+  font-size: 13px;
+}
+
+.file-tree-item:hover {
+  background-color: #333;
+}
+
+/* Kanban Board */
+.pixel-office-kanban-container {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+}
+
+.kanban-board {
+  background-color: #2a2a2a;
+  border: 1px solid #3a3a3a;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.kanban-header {
+  padding: 12px 16px;
+  border-bottom: 1px solid #3a3a3a;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.kanban-header h3 {
+  margin: 0;
+  color: #fff;
+  font-size: 16px;
+}
+
+.kanban-columns {
+  display: flex;
+  gap: 16px;
+  padding: 16px;
+}
+
+.kanban-column {
+  flex: 1;
+  min-width: 180px;
+}
+
+.kanban-column h4 {
+  margin: 0 0 8px 0;
+  color: #aaa;
+  font-size: 13px;
+  text-transform: uppercase;
+}
+
+.kanban-tasks {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.kanban-task {
+  padding: 8px 12px;
+  background-color: #333;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.kanban-task:hover {
+  background-color: #3a3a3a;
+}
+
+/* Status Bar */
+.status-bar {
+  display: flex;
+  gap: 16px;
+  padding: 8px 16px;
+  background-color: #1a1a1a;
+  border-top: 1px solid #3a3a3a;
+  color: #aaa;
+  font-size: 12px;
+}
+
+.status-item {
+  display: flex;
+  align-items: center;
+}
