@@ -1,0 +1,39 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "lib": ["ES2022"],
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "allowJs": true,
+    "checkJs": false,
+    "jsx": "react-jsx",
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "outDir": "./dist",
+    "removeComments": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedIndexedAccess": true,
+    "skipLibCheck": true,
+    "composite": true,
+    "incremental": true,
+    "paths": {
+      "@pixel-office/shared": ["./packages/shared/src"],
+      "@pixel-office/core": ["./packages/core/src"],
+      "@pixel-office/agents": ["./packages/agents/src"],
+      "@pixel-office/claude-sdk": ["./packages/claude-sdk/src"],
+      "@pixel-office/renderer": ["./packages/renderer/src"],
+      "@pixel-office/desktop": ["./packages/desktop/src"],
+      "@pixel-office/mcp-servers": ["./packages/mcp-servers/src"],
+      "@pixel-office/plugins": ["./packages/plugins/src"],
+      "@pixel-office/cloud-service": ["./packages/cloud-service/src"]
+    }
+  },
+  "exclude": ["node_modules", "dist", "build", ".next"]
+}

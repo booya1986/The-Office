@@ -1,0 +1,35 @@
+{
+  "name": "@pixel-office/plugins",
+  "version": "0.1.0",
+  "description": "Plugin system for Pixel Office Simulator",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs,esm --dts",
+    "dev": "tsup src/index.ts --format cjs,esm --dts --watch",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "eslint src/",
+    "typecheck": "tsc --noEmit",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "@pixel-office/shared": "workspace:*",
+    "@pixel-office/core": "workspace:*",
+    "semver": "^7.5.4"
+  },
+  "devDependencies": {
+    "@types/semver": "^7.5.6",
+    "tsup": "^8.0.1",
+    "typescript": "^5.3.3",
+    "vitest": "^1.2.0"
+  }
+}
