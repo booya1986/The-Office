@@ -1,0 +1,40 @@
+{
+  "name": "@pixel-office/cli",
+  "version": "0.1.0",
+  "description": "Command-line interface for Pixel Office Simulator",
+  "type": "module",
+  "bin": {
+    "pixel-office": "./bin/pixel-office.js",
+    "po": "./bin/pixel-office.js"
+  },
+  "scripts": {
+    "dev": "tsx src/index.ts",
+    "build": "tsup src/index.ts --format esm --dts --shims",
+    "start": "node bin/pixel-office.js",
+    "lint": "eslint src/",
+    "typecheck": "tsc --noEmit",
+    "clean": "rm -rf dist bin"
+  },
+  "dependencies": {
+    "@pixel-office/shared": "workspace:*",
+    "@pixel-office/core": "workspace:*",
+    "@pixel-office/agents": "workspace:*",
+    "@pixel-office/claude-sdk": "workspace:*",
+    "commander": "^11.1.0",
+    "inquirer": "^9.2.12",
+    "chalk": "^5.3.0",
+    "ora": "^8.0.1",
+    "boxen": "^7.1.1",
+    "cli-table3": "^0.6.3",
+    "gradient-string": "^2.0.2",
+    "figlet": "^1.7.0",
+    "dotenv": "^16.4.0"
+  },
+  "devDependencies": {
+    "@types/figlet": "^1.5.8",
+    "@types/inquirer": "^9.0.7",
+    "tsx": "^4.7.0",
+    "tsup": "^8.0.1",
+    "typescript": "^5.3.3"
+  }
+}
