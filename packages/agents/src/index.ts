@@ -9,21 +9,24 @@ export { BaseAgent } from './base/BaseAgent'
 // Orchestrator
 export { OrchestratorAgent, type OrchestratorConfig } from './orchestrator/OrchestratorAgent'
 
-// Sub-Agents
+// Development Agents
 export { FrontendAgent } from './sub-agents/frontend/FrontendAgent'
+export { BackendAgent } from './sub-agents/backend/BackendAgent'
+export { MobileAgent } from './sub-agents/mobile/MobileAgent'
+export { DatabaseAgent } from './sub-agents/database/DatabaseAgent'
+
+// Quality & Operations Agents
+export { QAAgent } from './sub-agents/qa/QAAgent'
+export { DevOpsAgent } from './sub-agents/devops/DevOpsAgent'
 export { SecurityAgent } from './sub-agents/security/SecurityAgent'
+export { PerformanceAgent } from './sub-agents/performance/PerformanceAgent'
+export { AccessibilityAgent } from './sub-agents/accessibility/AccessibilityAgent'
 
-// Backend Agent (placeholder for now)
-// export { BackendAgent } from './sub-agents/backend/BackendAgent'
+// Design & Content Agents
+export { UIUXAgent } from './sub-agents/uiux/UIUXAgent'
+export { GraphicDesignerAgent } from './sub-agents/graphic-designer/GraphicDesignerAgent'
 
-// QA Agent (placeholder for now)
-// export { QAAgent } from './sub-agents/qa/QAAgent'
-
-// DevOps Agent (placeholder for now)
-// export { DevOpsAgent } from './sub-agents/devops/DevOpsAgent'
-
-// Database Agent (placeholder for now)
-// export { DatabaseAgent } from './sub-agents/database/DatabaseAgent'
-
-// Documentation Agent (placeholder for now)
-// export { DocumentationAgent } from './sub-agents/documentation/DocumentationAgent'
+// Documentation & Analysis Agents
+export { TechnicalWriterAgent } from './sub-agents/technical-writer/TechnicalWriterAgent'
+export { ProductManagerAgent } from './sub-agents/product-manager/ProductManagerAgent'
+export { DataAnalystAgent } from './sub-agents/data-analyst/DataAnalystAgent'

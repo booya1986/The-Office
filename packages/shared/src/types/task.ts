@@ -21,30 +21,68 @@ export enum TaskType {
   RESPONSIVE_DESIGN = 'responsive_design',
 
   // Backend
+  API_DEVELOPMENT = 'api_development',
   API_ENDPOINT = 'api_endpoint',
+  AUTHENTICATION = 'authentication',
+  DATABASE_OPERATION = 'database_operation',
   DATABASE_SCHEMA = 'database_schema',
   DATABASE_MIGRATION = 'database_migration',
+  DATA_MIGRATION = 'data_migration',
+  SCHEMA_DESIGN = 'schema_design',
   BUSINESS_LOGIC = 'business_logic',
 
-  // Testing
+  // Mobile
+  MOBILE_SPECIFIC = 'mobile_specific',
+  MOBILE_COMPONENT = 'mobile_component',
+
+  // Testing & Quality
+  TESTING = 'testing',
   UNIT_TEST = 'unit_test',
   INTEGRATION_TEST = 'integration_test',
   E2E_TEST = 'e2e_test',
   SECURITY_AUDIT = 'security_audit',
 
-  // DevOps
+  // DevOps & Infrastructure
+  CI_CD = 'ci_cd',
   CI_CD_SETUP = 'ci_cd_setup',
   DEPLOYMENT = 'deployment',
   INFRASTRUCTURE = 'infrastructure',
 
+  // Performance & Accessibility
+  PERFORMANCE = 'performance',
+  OPTIMIZATION = 'optimization',
+  PROFILING = 'profiling',
+  PERFORMANCE_OPTIMIZATION = 'performance_optimization',
+  ACCESSIBILITY = 'accessibility',
+  A11Y_AUDIT = 'a11y_audit',
+  COMPLIANCE = 'compliance',
+
+  // Design
+  DESIGN = 'design',
+  UX_RESEARCH = 'ux_research',
+  WIREFRAMING = 'wireframing',
+  ASSET_CREATION = 'asset_creation',
+  BRANDING = 'branding',
+
   // Documentation
+  DOCUMENTATION = 'documentation',
   CODE_DOCUMENTATION = 'code_documentation',
   API_DOCUMENTATION = 'api_documentation',
   USER_GUIDE = 'user_guide',
+  CONTENT_WRITING = 'content_writing',
+
+  // Product Management
+  PLANNING = 'planning',
+  REQUIREMENTS = 'requirements',
+  FEATURE_SPEC = 'feature_spec',
+
+  // Analytics
+  ANALYTICS = 'analytics',
+  REPORTING = 'reporting',
+  DATA_ANALYSIS = 'data_analysis',
 
   // Other
   DEPENDENCY_UPDATE = 'dependency_update',
-  PERFORMANCE_OPTIMIZATION = 'performance_optimization',
 }
 
 export enum TaskStatus {

@@ -4,14 +4,25 @@
 
 export enum AgentType {
   ORCHESTRATOR = 'orchestrator',
+  // Development Agents
   FRONTEND = 'frontend',
   BACKEND = 'backend',
+  MOBILE = 'mobile',
+  DATABASE = 'database',
+  // Quality & Operations Agents
   QA = 'qa',
   DEVOPS = 'devops',
   SECURITY = 'security',
-  DATABASE = 'database',
+  PERFORMANCE = 'performance',
+  ACCESSIBILITY = 'accessibility',
+  // Design & Content Agents
+  UIUX = 'uiux',
+  GRAPHIC_DESIGNER = 'graphic_designer',
+  // Documentation & Analysis Agents
   DOCUMENTATION = 'documentation',
-  DESIGN = 'design',
+  TECHNICAL_WRITER = 'technical_writer',
+  PRODUCT_MANAGER = 'product_manager',
+  DATA_ANALYST = 'data_analyst',
 }
 
 export enum AgentStatus {
