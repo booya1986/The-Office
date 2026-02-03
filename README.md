@@ -44,12 +44,12 @@ Instead of typing commands or clicking through menus, you interact with a **Mana
 
 ## 📊 Project Status
 
-### 🎯 Overall Progress: **90%** Complete
+### 🎯 Overall Progress: **60%** Complete
 
 ```
 Phase 1: Foundation          ████████████████████ 100% ✅
 Phase 2: Visual Office       ████████████████████ 100% ✅
-Phase 3: Agent Features      ░░░░░░░░░░░░░░░░░░░░   0% 📋
+Phase 3: Working Backend     ████████████████████ 100% ✅ NEW!
 Phase 4: IDE Features        ░░░░░░░░░░░░░░░░░░░░   0% 📋
 Phase 5: Polish & Launch     ░░░░░░░░░░░░░░░░░░░░   0% 📋
 ```
@@ -163,33 +163,44 @@ pixel-office new my-app --template react-app
 pixel-office status
 ```
 
-## 🚀 Quick Start
+## 🚀 Quick Start (3 Steps!)
+
+### 1️⃣ Clone & Install
+
+```bash
+git clone https://github.com/booya1986/The-Office.git
+cd The-Office
+pnpm install
+```
+
+### 2️⃣ Add Your API Key
+
+```bash
+cp .env.example .env
+# Edit .env and add your Anthropic API key
+```
+
+Get an API key at [console.anthropic.com](https://console.anthropic.com/)
+
+### 3️⃣ Run!
+
+```bash
+pnpm dev
+```
+
+Open **http://localhost:3000** and watch your AI team come to life!
+
+Try typing: **"Create a React todo app with authentication"**
+
+---
 
 ### Prerequisites
 
 - Node.js 20+
 - pnpm 8+
-- Git
-- Anthropic API Key ([Get one here](https://console.anthropic.com/))
+- Anthropic API Key
 
-### Installation
-
-```bash
-# Clone the repository
-git clone https://github.com/booya1986/The-Office.git
-cd The-Office
-
-# Install dependencies
-pnpm install
-
-# Build all packages
-pnpm build
-
-# Set up environment
-export ANTHROPIC_API_KEY=your_api_key_here
-```
-
-### Using the CLI
+### Using the CLI (Optional)
 
 ```bash
 # Link CLI globally

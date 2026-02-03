@@ -23,5 +23,8 @@ export { useOfficeStore } from './store/officeStore'
 export { useAgentStore } from './store/agentStore'
 export { useUIStore } from './store/uiStore'
 
+// Hooks
+export { useBackendSocket } from './hooks/useBackendSocket'
+
 // Types
 export * from './types'

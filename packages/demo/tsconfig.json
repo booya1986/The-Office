@@ -3,16 +3,16 @@
   "compilerOptions": {
     "outDir": "./dist",
     "rootDir": "./src",
-    "lib": ["ES2022"],
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "jsx": "react-jsx",
     "moduleResolution": "bundler",
-    "skipLibCheck": true,
     "paths": {
+      "@pixel-office/renderer": ["../renderer/src"],
       "@pixel-office/shared": ["../shared/src"],
       "@pixel-office/core": ["../core/src"],
-      "@pixel-office/agents": ["../agents/src"],
-      "@pixel-office/claude-sdk": ["../claude-sdk/src"]
+      "@pixel-office/agents": ["../agents/src"]
     }
   },
   "include": ["src/**/*"],
-  "exclude": ["node_modules", "dist", "**/*.test.ts"]
+  "exclude": ["node_modules", "dist"]
 }

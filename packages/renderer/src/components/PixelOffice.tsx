@@ -13,6 +13,11 @@ import { useOfficeStore } from '../store/officeStore'
 import { officeManager } from '../services'
 import '../styles/pixel-office.css'
 
+interface ChatMessage {
+  role: 'user' | 'assistant'
+  content: string
+}
+
 export interface PixelOfficeProps {
   projectPath?: string
   onReady?: () => void
@@ -25,12 +30,23 @@ export interface PixelOfficeProps {
     taskManager?: any
     projectManager?: any
   }
+  /**
+   * Chat connection props (for backend integration)
+   */
+  chatProps?: {
+    chatHistory?: ChatMessage[]
+    streamingMessage?: string
+    isStreaming?: boolean
+    onSendMessage?: (message: string) => void
+    connected?: boolean
+  }
 }
 
 export const PixelOffice: React.FC<PixelOfficeProps> = ({
   projectPath,
   onReady,
   coreServices,
+  chatProps,
 }) => {
   const { panels } = useUIStore()
   const { initialized, setInitialized } = useOfficeStore()
@@ -98,7 +114,7 @@ export const PixelOffice: React.FC<PixelOfficeProps> = ({
           className="pixel-office-sidebar pixel-office-sidebar-right"
           style={{ width: panels.chat.width }}
         >
-          <ChatPanel />
+          <ChatPanel {...chatProps} />
         </aside>
       )}
 

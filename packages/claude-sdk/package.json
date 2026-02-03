@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "@pixel-office/shared": "workspace:*",
-    "@anthropic-ai/sdk": "^0.17.0"
+    "@anthropic-ai/sdk": "^0.39.0"
   },
   "devDependencies": {
     "tsup": "^8.0.1",

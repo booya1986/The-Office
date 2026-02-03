@@ -7,7 +7,6 @@
     "moduleResolution": "bundler",
     "outDir": "./dist",
     "rootDir": "./src",
-    "composite": true,
     "allowImportingTsExtensions": false
   },
   "include": ["src/**/*"],

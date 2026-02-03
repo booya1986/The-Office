@@ -3,7 +3,6 @@
  */
 
 import { Task, KanbanBoard, Backlog, Pipeline } from './task'
-import { AgentState } from './agent'
 
 export interface Project {
   id: string
