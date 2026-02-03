@@ -47,7 +47,7 @@ export interface Notification {
 const DEFAULT_PANELS: UIPanelState = {
   chat: { open: true, width: 400 },
   kanban: { open: false, width: 600 },
-  fileTree: { open: true, width: 300 },
+  fileTree: { open: false, width: 300 },
   agentInfo: { open: false },
 }
 

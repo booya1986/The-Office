@@ -114,6 +114,46 @@ export class TaskBridge extends EventEmitter {
   }
 
   /**
+   * Get Kanban data for UI
+   */
+  getKanbanData(): {
+    todo: Task[]
+    inProgress: Task[]
+    done: Task[]
+  } {
+    const todoTasks: Task[] = []
+    const inProgressTasks: Task[] = []
+    const doneTasks: Task[] = []
+
+    for (const task of this.tasks.values()) {
+      switch (task.status) {
+        case 'pending':
+        case 'queued':
+        case 'backlog':
+        case 'assigned':
+          todoTasks.push(task)
+          break
+        case 'in_progress':
+        case 'running':
+          inProgressTasks.push(task)
+          break
+        case 'completed':
+        case 'success':
+        case 'failed':
+        case 'cancelled':
+          doneTasks.push(task)
+          break
+      }
+    }
+
+    return {
+      todo: todoTasks,
+      inProgress: inProgressTasks,
+      done: doneTasks,
+    }
+  }
+
+  /**
    * Get tasks by status
    */
   getTasksByStatus(status: TaskStatus): Task[] {

@@ -51,6 +51,7 @@ export const PixelOffice: React.FC<PixelOfficeProps> = ({
   const { panels } = useUIStore()
   const { initialized, setInitialized } = useOfficeStore()
   const [isManagerReady, setIsManagerReady] = useState(false)
+  const [showKanban, setShowKanban] = useState(false)
 
   useEffect(() => {
     // Initialize office manager
@@ -105,6 +106,15 @@ export const PixelOffice: React.FC<PixelOfficeProps> = ({
       {/* Main office canvas */}
       <main className="pixel-office-main">
         <OfficeCanvas />
+
+        {/* Kanban toggle button */}
+        <button
+          className="kanban-toggle-btn"
+          onClick={() => setShowKanban(true)}
+        >
+          📊 Task Board
+        </button>
+
         <StatusBar />
       </main>
 
@@ -118,14 +128,9 @@ export const PixelOffice: React.FC<PixelOfficeProps> = ({
         </aside>
       )}
 
-      {/* Kanban board (floating) */}
-      {panels.kanban.open && (
-        <div
-          className="pixel-office-kanban-container"
-          style={{ width: panels.kanban.width }}
-        >
-          <KanbanBoard />
-        </div>
+      {/* Kanban board (floating overlay) */}
+      {showKanban && (
+        <KanbanBoard onClose={() => setShowKanban(false)} />
       )}
     </div>
   )

@@ -1,5 +1,6 @@
 import { EventEmitter } from 'eventemitter3'
-import type { Agent, AgentStatus, Task, TaskResult } from '@pixel-office/shared'
+import { AgentStatus } from '@pixel-office/shared'
+import type { Agent, Task, TaskResult } from '@pixel-office/shared'
 import { useAgentStore } from '../store/agentStore'
 import type { AgentAnimation } from '../types'
 
@@ -125,7 +126,7 @@ export class AgentBridge extends EventEmitter {
     const { setAgentAnimation } = useAgentStore.getState()
 
     // Celebrate on successful completion
-    if (result.status === 'completed') {
+    if (result.success) {
       setAgentAnimation(agentId, 'celebrating')
 
       // Return to idle after celebration
@@ -176,49 +177,51 @@ export class AgentBridge extends EventEmitter {
 
   /**
    * Get agent position in the office (based on agent type)
+   * Positions are spread across the office floor for better visibility
    */
   private getAgentPosition(agent: Agent): { x: number; y: number } {
-    // Assign positions based on agent type in a grid layout
+    // Assign positions based on agent type - spread across the office floor
+    // Product Manager is the orchestrator and sits in the center
     const positions: Record<string, { x: number; y: number }> = {
-      orchestrator: { x: 8, y: 4 },  // Center of office
-      frontend: { x: 3, y: 2 },
-      backend: { x: 13, y: 2 },
-      mobile: { x: 3, y: 6 },
-      database: { x: 13, y: 6 },
-      qa: { x: 5, y: 4 },
-      devops: { x: 11, y: 4 },
-      security: { x: 3, y: 8 },
-      performance: { x: 13, y: 8 },
-      accessibility: { x: 5, y: 8 },
-      uiux: { x: 6, y: 2 },
-      graphic_designer: { x: 10, y: 2 },
-      technical_writer: { x: 6, y: 6 },
-      product_manager: { x: 10, y: 6 },
-      data_analyst: { x: 11, y: 8 },
-      documentation: { x: 8, y: 8 },
+      product_manager: { x: 24, y: 12 },  // Center of office - ORCHESTRATOR
+      orchestrator: { x: 24, y: 12 },      // Alias for product_manager
+      frontend: { x: 8, y: 8 },
+      backend: { x: 40, y: 8 },
+      mobile: { x: 8, y: 16 },
+      database: { x: 40, y: 16 },
+      qa: { x: 16, y: 10 },
+      devops: { x: 32, y: 10 },
+      security: { x: 8, y: 20 },
+      performance: { x: 40, y: 20 },
+      accessibility: { x: 16, y: 18 },
+      uiux: { x: 14, y: 8 },
+      graphic_designer: { x: 34, y: 8 },
+      technical_writer: { x: 14, y: 16 },
+      data_analyst: { x: 34, y: 16 },
+      documentation: { x: 24, y: 18 },
     }
 
-    return positions[agent.type] || { x: 8, y: 4 }
+    return positions[agent.type] || { x: 24, y: 12 }
   }
 
   /**
    * Map AgentStatus to visual status
    */
-  private mapAgentStatus(status: AgentStatus): 'idle' | 'busy' | 'thinking' | 'error' {
+  private mapAgentStatus(status: AgentStatus): AgentStatus {
     switch (status) {
-      case 'idle':
-        return 'idle'
-      case 'busy':
-      case 'working':
-        return 'busy'
-      case 'thinking':
-      case 'planning':
-        return 'thinking'
-      case 'error':
-      case 'failed':
-        return 'error'
+      case AgentStatus.IDLE:
+        return AgentStatus.IDLE
+      case AgentStatus.BUSY:
+      case AgentStatus.WORKING:
+        return AgentStatus.BUSY
+      case AgentStatus.THINKING:
+      case AgentStatus.PLANNING:
+        return AgentStatus.THINKING
+      case AgentStatus.ERROR:
+      case AgentStatus.FAILED:
+        return AgentStatus.ERROR
       default:
-        return 'idle'
+        return AgentStatus.IDLE
     }
   }
 
@@ -227,13 +230,13 @@ export class AgentBridge extends EventEmitter {
    */
   private mapAgentAnimation(status: AgentStatus): AgentAnimation {
     switch (status) {
-      case 'busy':
-      case 'working':
+      case AgentStatus.BUSY:
+      case AgentStatus.WORKING:
         return 'typing'
-      case 'thinking':
-      case 'planning':
+      case AgentStatus.THINKING:
+      case AgentStatus.PLANNING:
         return 'thinking'
-      case 'idle':
+      case AgentStatus.IDLE:
       default:
         return 'idle'
     }

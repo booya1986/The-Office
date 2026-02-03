@@ -98,6 +98,26 @@ The visual office uses a layered rendering approach:
 - **Bridges**: AgentBridge, TaskBridge, OfficeManager for real-time data sync
 - **Pathfinding**: A* algorithm with Catmull-Rom spline smoothing
 
+### Voice & Kanban Features
+
+**Speech-to-Text:**
+- **VoiceInput**: Browser-native Web Speech API (SpeechRecognition)
+- Microphone button in ChatPanel with pulse animation
+- Interim transcript display during recording
+- Automatic message submission on speech end
+
+**Floating Kanban Board:**
+- Toggle overlay with smooth animations
+- Real-time TaskBridge integration
+- Todo/In Progress/Done columns with task counts
+- Priority indicators (high/medium/low)
+
+**Product Manager as Orchestrator:**
+- Centered position in office layout
+- Chat panel renamed to "Product Manager"
+- Custom agent sprites (male/female PNG images)
+- 3x larger agent figures spread across office floor
+
 ## Code Conventions
 
 ### TypeScript
@@ -139,3 +159,7 @@ Requires:
 - [packages/claude-sdk/src/tools/](packages/claude-sdk/src/tools/) - Claude tool definitions
 - [packages/renderer/src/office/](packages/renderer/src/office/) - PixiJS office rendering
 - [packages/renderer/src/store/](packages/renderer/src/store/) - Zustand state stores
+- [packages/renderer/src/components/ui/VoiceInput.tsx](packages/renderer/src/components/ui/VoiceInput.tsx) - Speech-to-text input
+- [packages/renderer/src/components/ui/KanbanBoard.tsx](packages/renderer/src/components/ui/KanbanBoard.tsx) - Floating Kanban overlay
+- [packages/renderer/src/services/TaskBridge.ts](packages/renderer/src/services/TaskBridge.ts) - Kanban data synchronization
+- [packages/cloud-service/src/](packages/cloud-service/src/) - Backend service with Claude API

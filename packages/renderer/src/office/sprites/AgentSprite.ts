@@ -6,28 +6,53 @@ import * as PIXI from 'pixi.js'
 import type { AgentSpriteData, Position } from '../../types'
 import { AgentType } from '@pixel-office/shared'
 
+// Agent sprite image paths
+const AGENT_IMAGES = {
+  male: '/agent_male.png',
+  female: '/agent_female.png',
+}
+
+// Determine gender based on agent type (for visual variety)
+const FEMALE_AGENT_TYPES = [
+  AgentType.FRONTEND,
+  AgentType.QA,
+  AgentType.ACCESSIBILITY,
+  AgentType.UIUX,
+  AgentType.GRAPHIC_DESIGNER,
+  AgentType.DOCUMENTATION,
+  AgentType.PRODUCT_MANAGER,
+]
+
 export class AgentSprite {
   container: PIXI.Container
-  private sprite: PIXI.Graphics
+  private spriteContainer: PIXI.Container
+  private imageSprite?: PIXI.Sprite
+  private fallbackSprite?: PIXI.Graphics
   private nameText: PIXI.Text
   private statusIndicator: PIXI.Graphics
   private tileSize: number
   private data: AgentSpriteData
+  private static texturesLoaded = false
+  private static maleTexture?: PIXI.Texture
+  private static femaleTexture?: PIXI.Texture
 
   constructor(data: AgentSpriteData, tileSize: number) {
     this.data = data
     this.tileSize = tileSize
     this.container = new PIXI.Container()
+    this.spriteContainer = new PIXI.Container()
+    this.container.addChild(this.spriteContainer)
 
-    // Create sprite (simple colored square for now)
-    this.sprite = this.createSprite()
-    this.container.addChild(this.sprite)
+    // Load and create sprite
+    this.loadAndCreateSprite()
 
     // Create name label
     this.nameText = new PIXI.Text(data.name, {
       fontSize: 10,
-      fill: 0x000000,
+      fill: 0xffffff,
       fontFamily: 'monospace',
+      stroke: 0x000000,
+      strokeThickness: 2,
     })
     this.nameText.anchor.set(0.5, 1)
     this.nameText.position.set(tileSize / 2, -2)
@@ -46,9 +71,58 @@ export class AgentSprite {
   }
 
   /**
-   * Create agent sprite based on type
+   * Load textures and create sprite
    */
-  private createSprite(): PIXI.Graphics {
+  private async loadAndCreateSprite(): Promise<void> {
+    // Create fallback first
+    this.fallbackSprite = this.createFallbackSprite()
+    this.spriteContainer.addChild(this.fallbackSprite)
+
+    try {
+      // Load textures if not already loaded
+      if (!AgentSprite.texturesLoaded) {
+        const [maleTexture, femaleTexture] = await Promise.all([
+          PIXI.Assets.load(AGENT_IMAGES.male),
+          PIXI.Assets.load(AGENT_IMAGES.female),
+        ])
+        AgentSprite.maleTexture = maleTexture
+        AgentSprite.femaleTexture = femaleTexture
+        AgentSprite.texturesLoaded = true
+      }
+
+      // Create image sprite
+      const isFemale = FEMALE_AGENT_TYPES.includes(this.data.type)
+      const texture = isFemale ? AgentSprite.femaleTexture : AgentSprite.maleTexture
+
+      if (texture) {
+        this.imageSprite = new PIXI.Sprite(texture)
+
+        // Scale to fit tile size (make it 3x larger)
+        const spriteSize = this.tileSize * 4.5
+        const scale = spriteSize / Math.max(texture.width, texture.height)
+        this.imageSprite.scale.set(scale, scale)
+
+        // Center the sprite
+        this.imageSprite.anchor.set(0.5, 1)
+        this.imageSprite.position.set(this.tileSize / 2, this.tileSize)
+
+        // Remove fallback and add image sprite
+        if (this.fallbackSprite) {
+          this.spriteContainer.removeChild(this.fallbackSprite)
+          this.fallbackSprite.destroy()
+          this.fallbackSprite = undefined
+        }
+        this.spriteContainer.addChild(this.imageSprite)
+      }
+    } catch (error) {
+      console.warn('Failed to load agent sprite image, using fallback:', error)
+    }
+  }
+
+  /**
+   * Create fallback sprite (colored square) if images fail to load
+   */
+  private createFallbackSprite(): PIXI.Graphics {
     const sprite = new PIXI.Graphics()
     const color = this.getAgentColor(this.data.type)
     const size = this.tileSize * 0.8
@@ -69,41 +143,7 @@ export class AgentSprite {
     sprite.drawEllipse(this.tileSize / 2, this.tileSize * 0.9, size / 2, size / 6)
     sprite.endFill()
 
-    // Add icon/symbol based on agent type
-    this.addAgentIcon(sprite, this.data.type)
-
     return sprite
-  }
-
-  /**
-   * Add icon to represent agent type
-   */
-  private addAgentIcon(graphics: PIXI.Graphics, type: AgentType): void {
-    const centerX = this.tileSize / 2
-    const centerY = this.tileSize / 2
-
-    graphics.beginFill(0xffffff)
-
-    switch (type) {
-      case AgentType.FRONTEND:
-        // F icon
-        graphics.drawRect(centerX - 4, centerY - 6, 2, 12)
-        graphics.drawRect(centerX - 4, centerY - 6, 6, 2)
-        graphics.drawRect(centerX - 4, centerY - 1, 5, 2)
-        break
-      case AgentType.BACKEND:
-        // B icon
-        graphics.drawRect(centerX - 4, centerY - 6, 2, 12)
-        graphics.drawRect(centerX - 4, centerY - 6, 6, 2)
-        graphics.drawRect(centerX - 4, centerY - 1, 6, 2)
-        graphics.drawRect(centerX - 4, centerY + 4, 6, 2)
-        break
-      default:
-        // Default dot
-        graphics.drawCircle(centerX, centerY, 3)
-    }
-
-    graphics.endFill()
   }
 
   /**
@@ -218,24 +258,35 @@ export class AgentSprite {
   /**
    * Animate sprite
    */
-  private animate(delta: number): void {
+  private animate(_delta: number): void {
+    const sprite = this.imageSprite || this.fallbackSprite
+    if (!sprite) return
+
     switch (this.data.animation) {
       case 'typing':
         // Slight bobbing motion
-        this.sprite.position.y = Math.sin(Date.now() * 0.01) * 2
+        if (this.imageSprite) {
+          this.spriteContainer.position.y = Math.sin(Date.now() * 0.01) * 2
+        } else {
+          sprite.position.y = Math.sin(Date.now() * 0.01) * 2
+        }
         break
       case 'thinking':
         // Rotate slightly
-        this.sprite.rotation = Math.sin(Date.now() * 0.005) * 0.1
+        this.spriteContainer.rotation = Math.sin(Date.now() * 0.005) * 0.1
         break
       case 'celebrating':
         // Jump animation
-        this.sprite.position.y = Math.abs(Math.sin(Date.now() * 0.02)) * -10
+        if (this.imageSprite) {
+          this.spriteContainer.position.y = Math.abs(Math.sin(Date.now() * 0.02)) * -10
+        } else {
+          sprite.position.y = Math.abs(Math.sin(Date.now() * 0.02)) * -10
+        }
         break
       default:
         // Reset to idle
-        this.sprite.position.y = 0
-        this.sprite.rotation = 0
+        this.spriteContainer.position.y = 0
+        this.spriteContainer.rotation = 0
     }
   }
 

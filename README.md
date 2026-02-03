@@ -6,6 +6,8 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.3-blue.svg)](https://www.typescriptlang.org/)
 [![Powered by Claude](https://img.shields.io/badge/Powered%20by-Claude-orange.svg)](https://www.anthropic.com/)
 
+![Pixel Office Simulator](https://raw.githubusercontent.com/booya1986/The-Office/main/img/office_background_medium.jpeg)
+
 ## 🎮 What is Pixel Office Simulator?
 
 Pixel Office Simulator is a revolutionary IDE that replaces traditional text-based development environments with an **isometric pixel art office** where AI agents work together to build your projects.
@@ -15,11 +17,12 @@ Instead of typing commands or clicking through menus, you interact with a **Mana
 ### Key Features
 
 - 🎨 **Pixel Art Office Interface** - Beautiful isometric 2D environment inspired by 90s games
-- 🤖 **Multi-Agent Orchestration** - Manager coordinates specialized agents
-- 💬 **Natural Language Interface** - Talk to your manager like a real person
-- 📊 **Visual Task Management** - Kanban boards, backlog, and pipeline visualization
+- 🤖 **Multi-Agent Orchestration** - Product Manager coordinates specialized agents
+- 🎤 **Speech-to-Text Input** - Talk to the Product Manager using your voice
+- 💬 **Natural Language Interface** - Communicate naturally with your team
+- 📊 **Visual Task Management** - Floating Kanban board with real-time updates
 - 🔧 **Full IDE Features** - Code editor, file system, Git integration, terminal
-- 🎮 **Gamification** - Animations, progress indicators, achievements
+- 🎮 **Gamification** - Animations, 8-bit sounds, progress indicators
 - 🔌 **Plugin System** - Extend with custom agents and tools
 - ☁️ **Cloud-Ready** - Optional cloud service for collaboration
 
@@ -44,14 +47,15 @@ Instead of typing commands or clicking through menus, you interact with a **Mana
 
 ## 📊 Project Status
 
-### 🎯 Overall Progress: **60%** Complete
+### 🎯 Overall Progress: **67%** Complete (4/6 Phases)
 
 ```
 Phase 1: Foundation          ████████████████████ 100% ✅
 Phase 2: Visual Office       ████████████████████ 100% ✅
-Phase 3: Working Backend     ████████████████████ 100% ✅ NEW!
-Phase 4: IDE Features        ░░░░░░░░░░░░░░░░░░░░   0% 📋
-Phase 5: Polish & Launch     ░░░░░░░░░░░░░░░░░░░░   0% 📋
+Phase 3: Working Backend     ████████████████████ 100% ✅
+Phase 4: Voice & Kanban      ████████████████████ 100% ✅ NEW!
+Phase 5: IDE Features        ░░░░░░░░░░░░░░░░░░░░   0% 📋
+Phase 6: Polish & Launch     ░░░░░░░░░░░░░░░░░░░░   0% 📋
 ```
 
 ### ✅ Phase 1: Foundation (100% Complete)
@@ -585,10 +589,10 @@ MIT License - see LICENSE for details.
 
 ## 🎯 Roadmap
 
-### Overall Progress: 2 of 5 Phases Complete (40%)
+### Overall Progress: 4 of 6 Phases Complete (67%)
 
 ```
-████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ 40%
+██████████████████████████░░░░░░░░░░░░░░░░ 67%
 ```
 
 ---
@@ -692,7 +696,57 @@ Status:   Production Ready
 
 ---
 
-### 📋 Phase 3: Advanced Agent Features (0% Complete)
+### ✅ Phase 3: Working Backend (100% Complete)
+
+```
+Progress: ████████████████████ 100% ✅
+Timeline: Q2 2026 - COMPLETE!
+Status:   Production Ready
+```
+
+**Completed Features (4/4):**
+
+**Backend Service:**
+  - [x] Cloud service with Claude API integration
+  - [x] Socket.io real-time communication
+  - [x] Agent message streaming
+  - [x] Task event broadcasting
+
+---
+
+### ✅ Phase 4: Voice & Kanban (100% Complete)
+
+```
+Progress: ████████████████████ 100% ✅
+Timeline: Q2 2026 - COMPLETE!
+Status:   Production Ready
+```
+
+**Completed Features (8/8):**
+
+**Speech-to-Text Input:**
+  - [x] VoiceInput component with Web Speech API
+  - [x] Browser-native speech recognition (SpeechRecognition)
+  - [x] Voice activity indicator with pulse animation
+  - [x] Interim transcript display during recording
+  - [x] Microphone button integrated in ChatPanel
+
+**Floating Kanban Board:**
+  - [x] Overlay Kanban board with smooth animations
+  - [x] Real-time TaskBridge integration
+  - [x] Todo/In Progress/Done columns with task counts
+  - [x] Task priority indicators (high/medium/low)
+  - [x] Toggle button for easy access
+
+**Product Manager as Orchestrator:**
+  - [x] Renamed chat interface to "Product Manager"
+  - [x] Centered Product Manager position in office
+  - [x] Custom agent sprites (male/female PNG images)
+  - [x] 3x larger agent figures spread across office floor
+
+---
+
+### 📋 Future: Advanced Agent Features (Planned)
 
 ```
 Progress: ░░░░░░░░░░░░░░░░░░░░ 0% 📋
@@ -709,7 +763,7 @@ Status:   Not Started
 
 ---
 
-### 📋 Phase 4: IDE Features (0% Complete)
+### 📋 Phase 5: IDE Features (0% Complete)
 
 ```
 Progress: ░░░░░░░░░░░░░░░░░░░░ 0% 📋
@@ -726,7 +780,7 @@ Status:   Not Started
 
 ---
 
-### 📋 Phase 5: Polish & Launch (0% Complete)
+### 📋 Phase 6: Polish & Launch (0% Complete)
 
 ```
 Progress: ░░░░░░░░░░░░░░░░░░░░ 0% 📋

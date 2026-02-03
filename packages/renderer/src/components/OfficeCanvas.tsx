@@ -22,6 +22,7 @@ export const OfficeCanvas: React.FC = () => {
       width: layout.width,
       height: layout.height,
       tileSize: layout.tileSize,
+      backgroundImage: layout.backgroundImage,
     })
 
     // Start render loop
