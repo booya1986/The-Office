@@ -1,18 +1,22 @@
 {
   "name": "@pixel-office/desktop",
   "version": "0.1.0",
-  "description": "Electron desktop app for Pixel Office Simulator",
-  "main": "dist/main/index.js",
+  "description": "Pixel Office Simulator - Desktop Application",
+  "main": "./dist/main/index.js",
+  "author": "Pixel Office Team",
+  "license": "MIT",
   "scripts": {
     "dev": "electron-vite dev",
     "build": "electron-vite build",
     "preview": "electron-vite preview",
-    "package": "electron-builder",
-    "package:mac": "electron-builder --mac",
-    "package:win": "electron-builder --win",
-    "package:linux": "electron-builder --linux",
-    "lint": "eslint src/",
+    "start": "electron-vite preview",
+    "package": "electron-builder --dir",
+    "dist": "electron-builder",
+    "dist:mac": "electron-builder --mac",
+    "dist:win": "electron-builder --win",
+    "dist:linux": "electron-builder --linux",
     "typecheck": "tsc --noEmit",
+    "lint": "eslint src --ext .ts",
     "clean": "rm -rf dist out"
   },
   "dependencies": {
@@ -20,35 +24,58 @@
     "@pixel-office/core": "workspace:*",
     "@pixel-office/agents": "workspace:*",
     "@pixel-office/renderer": "workspace:*",
-    "electron-store": "^8.1.0",
-    "electron-updater": "^6.1.7"
+    "@pixel-office/claude-sdk": "workspace:*"
   },
   "devDependencies": {
-    "electron": "^28.2.0",
+    "electron": "^28.1.0",
     "electron-builder": "^24.9.1",
     "electron-vite": "^2.0.0",
-    "typescript": "^5.3.3"
+    "@types/node": "^20.10.6",
+    "typescript": "^5.3.3",
+    "eslint": "^8.56.0",
+    "vite": "^5.0.8"
   },
   "build": {
     "appId": "com.pixeloffice.simulator",
     "productName": "Pixel Office Simulator",
+    "copyright": "Copyright © 2026 Pixel Office Team",
     "directories": {
-      "output": "out"
+      "output": "out",
+      "buildResources": "resources"
     },
     "files": [
       "dist/**/*",
-      "package.json"
+      "resources/**/*"
     ],
     "mac": {
       "category": "public.app-category.developer-tools",
-      "target": ["dmg", "zip"]
+      "target": [
+        {
+          "target": "dmg",
+          "arch": ["x64", "arm64"]
+        }
+      ],
+      "icon": "resources/icon.icns"
     },
     "win": {
-      "target": ["nsis", "portable"]
+      "target": [
+        {
+          "target": "nsis",
+          "arch": ["x64"]
+        }
+      ],
+      "icon": "resources/icon.ico"
     },
     "linux": {
       "target": ["AppImage", "deb"],
-      "category": "Development"
+      "category": "Development",
+      "icon": "resources/icon.png"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
     }
   }
 }

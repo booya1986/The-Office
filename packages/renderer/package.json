@@ -23,7 +23,8 @@
     "@pixi/react": "^7.1.2",
     "zustand": "^4.4.7",
     "framer-motion": "^10.16.16",
-    "clsx": "^2.0.0"
+    "clsx": "^2.0.0",
+    "eventemitter3": "^5.0.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.45",
