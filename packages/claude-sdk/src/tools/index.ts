@@ -323,14 +323,26 @@ export function getToolsByCategory(category: string): ClaudeTool[] {
  */
 export function getToolsForAgent(agentType: string): ClaudeTool[] {
   const agentToolMap: Record<string, ClaudeTool[]> = {
+    orchestrator: ALL_TOOLS,
+    // Development Agents
     frontend: [...FILE_TOOLS, ...GIT_TOOLS, ...PACKAGE_TOOLS, ...TESTING_TOOLS],
     backend: [...FILE_TOOLS, ...GIT_TOOLS, ...PACKAGE_TOOLS, ...TESTING_TOOLS, ...SHELL_TOOLS],
-    qa: [...FILE_TOOLS, ...TESTING_TOOLS, ...SEARCH_TOOLS],
-    devops: [...FILE_TOOLS, ...GIT_TOOLS, ...SHELL_TOOLS],
-    security: [...FILE_TOOLS, ...SEARCH_TOOLS, ...SHELL_TOOLS],
+    mobile: [...FILE_TOOLS, ...GIT_TOOLS, ...PACKAGE_TOOLS, ...TESTING_TOOLS],
     database: [...FILE_TOOLS, ...GIT_TOOLS, ...SHELL_TOOLS],
+    // Quality & Operations Agents
+    qa: [...FILE_TOOLS, ...TESTING_TOOLS, ...SEARCH_TOOLS, ...GIT_TOOLS],
+    devops: [...FILE_TOOLS, ...GIT_TOOLS, ...SHELL_TOOLS, ...PACKAGE_TOOLS],
+    security: [...FILE_TOOLS, ...SEARCH_TOOLS, ...SHELL_TOOLS, ...PACKAGE_TOOLS],
+    performance: [...FILE_TOOLS, ...SHELL_TOOLS, ...TESTING_TOOLS, ...SEARCH_TOOLS],
+    accessibility: [...FILE_TOOLS, ...TESTING_TOOLS, ...SEARCH_TOOLS],
+    // Design & Content Agents
+    uiux: [...FILE_TOOLS, ...SEARCH_TOOLS],
+    graphic_designer: [...FILE_TOOLS, ...SEARCH_TOOLS],
+    // Documentation & Analysis Agents
     documentation: [...FILE_TOOLS, ...GIT_TOOLS, ...SEARCH_TOOLS],
-    orchestrator: ALL_TOOLS,
+    technical_writer: [...FILE_TOOLS, ...GIT_TOOLS, ...SEARCH_TOOLS],
+    product_manager: [...FILE_TOOLS, ...SEARCH_TOOLS],
+    data_analyst: [...FILE_TOOLS, ...SHELL_TOOLS, ...SEARCH_TOOLS],
   }
 
   return agentToolMap[agentType] || []
