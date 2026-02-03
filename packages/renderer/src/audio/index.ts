@@ -1,0 +1,5 @@
+export { SoundGenerator } from './SoundGenerator'
+export { SoundManager, soundManager } from './SoundManager'
+export { AudioProvider, useAudio } from './AudioProvider'
+export { AudioControls } from './AudioControls'
+export * from './types'
